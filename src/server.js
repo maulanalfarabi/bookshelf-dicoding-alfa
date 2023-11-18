@@ -13,7 +13,7 @@ const init = async () => {
         host: 'localhost',
         // eslint-disable-next-line no-trailing-spaces
 
-        // Mencegah same-origin polivy
+        // Mencegah same-origin policy
         routes: {
             cors: {
                 origin: ['*'],

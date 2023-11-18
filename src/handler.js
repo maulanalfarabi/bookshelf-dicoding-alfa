@@ -49,9 +49,8 @@ const addBook = (request, h) => {
         const response = h
             .response({
                 status: 'fail',
-                message: 'Gagal menambahkan buku. Mohon isi nama buku.',
-            })
-            .code(400);
+                message: 'Gagal menambahkan buku. Mohon isi nama buku',
+            }).code(400);
         return response;
     }
 
@@ -60,8 +59,7 @@ const addBook = (request, h) => {
             .response({
                 status: 'fail',
                 message: 'Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount',
-            })
-            .code(400);
+            }).code(400);
         return response;
     }
 
@@ -74,21 +72,19 @@ const addBook = (request, h) => {
         const response = h
             .response({
                 status: 'success',
-                message: 'Buku berhasil ditambahkan.',
+                message: 'Buku berhasil ditambahkan',
                 data: {
                     bookId: id,
                 },
-            })
-            .code(201);
+            }).code(201);
         return response;
     }
 
     const response = h
         .response({
             status: 'fail',
-            message: 'Buku gagal ditambahkan.',
-        })
-        .code(500);
+            message: 'Buku gagal ditambahkan',
+        }).code(500);
     return response;
 };
 
@@ -112,8 +108,7 @@ const getAllBooks = (request, h) => {
                         publisher: book.publisher,
                     })),
                 },
-            })
-            .code(200);
+            }).code(200);
         return response;
     };
 
@@ -133,8 +128,7 @@ const getAllBooks = (request, h) => {
                         publisher: book.publisher,
                     })),
                 },
-            })
-            .code(200);
+            }).code(200);
         return response;
     }
 
@@ -154,12 +148,11 @@ const getAllBooks = (request, h) => {
                         publisher: book.publisher,
                     })),
                 },
-            })
-            .code(200);
+            }).code(200);
         return response;
     }
 
-    // non-query
+    //
     const response = h
         .response({
             status: 'success',
@@ -170,8 +163,7 @@ const getAllBooks = (request, h) => {
                     publisher: book.publisher,
                 })),
             },
-        })
-        .code(200);
+        }).code(200);
     return response;
 };
 
@@ -188,8 +180,7 @@ const getBookById = (request, h) => {
                 data: {
                     book,
                 },
-            })
-            .code(200);
+            }).code(200);
         return response;
     }
 
@@ -197,9 +188,8 @@ const getBookById = (request, h) => {
     const response = h
         .response({
             status: 'fail',
-            message: 'Buku tidak ditemukan.',
-        })
-        .code(404);
+            message: 'Buku tidak ditemukan',
+        }).code(404);
     return response;
 };
 
@@ -222,9 +212,8 @@ const editBookById = (request, h) => {
         const response = h
             .response({
                 status: 'fail',
-                message: 'Gagal memperbarui buku. Mohon isi nama buku.',
-            })
-            .code(400);
+                message: 'Gagal memperbarui buku. Mohon isi nama buku',
+            }).code(400);
         return response;
     }
 
@@ -233,9 +222,8 @@ const editBookById = (request, h) => {
         const response = h
             .response({
                 status: 'fail',
-                message: 'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount.',
-            })
-            .code(400);
+                message: 'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount',
+            }).code(400);
         return response;
     }
 
@@ -262,9 +250,8 @@ const editBookById = (request, h) => {
         const response = h
             .response({
                 status: 'success',
-                message: 'Buku berhasil diperbarui.',
-            })
-            .code(200);
+                message: 'Buku berhasil diperbarui',
+            }).code(200);
         return response;
     }
 
@@ -272,37 +259,34 @@ const editBookById = (request, h) => {
     const response = h
         .response({
             status: 'fail',
-            message: 'Buku gagal diperbarui. Id buku tidak ditemukan.',
-        })
-        .code(404);
+            message: 'Gagal memperbarui buku. Id tidak ditemukan',
+        }).code(404);
     return response;
 };
 
 const deleteBookById = (request, h) => {
     const { bookId } = request.params;
 
-    const index = items.findIndex((book) => book.id === bookId);
+    const book = items.findIndex((book) => book.id === bookId);
 
     // book id ditemukan
-    if (index !== -1) {
-        items.splice(index, 1);
-    };
+    if (book !== -1) {
+        items.splice(book, 1);
 
-    const response = h
-        .response({
-            status: 'success',
-            message: 'Penghapusan buku berhasil.',
-        })
-        .code(200);
-    return response;
+        const response = h
+            .response({
+                status: 'success',
+                message: 'Buku berhasil dihapus',
+            }).code(200);
+        return response;
+    }
 
     // book id tidak ditemukan
-    response = h
+    const response = h
         .response({
             status: 'fail',
-            message: 'Penhapusan buku gagal. Id tidak ditemukan.',
-        })
-        .code(404);
+            message: 'Buku gagal dihapus. Id tidak ditemukan',
+        }).code(404);
     return response;
 };
 
